@@ -10,9 +10,6 @@ export class ArticleService {
     constructor(private http: HttpClient) { }
 
   getArticles(): Observable<any>{
-    const headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*');
-    return this.http.get<[]>(this.baseUrl, { 'headers': headers });
+    return this.http.get<[]>(this.baseUrl);
   }
 }
