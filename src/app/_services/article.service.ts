@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { Article } from "../_models/article";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from "rxjs";
 @Injectable({
     providedIn: 'root'
@@ -11,6 +10,9 @@ export class ArticleService {
     constructor(private http: HttpClient) { }
 
   getArticles(): Observable<any>{
-    return this.http.get<[]>(this.baseUrl);
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*');
+    return this.http.get<[]>(this.baseUrl, { 'headers': headers });
   }
 }
